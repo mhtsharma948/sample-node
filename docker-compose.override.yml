@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  sample-node:
+    image: rtpltest/sample-node:latest
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 9229:5858
+    volumes:
+      - .:/usr/src/app
+    command: nodemon -L --debug ./bin/www

@@ -1,0 +1,17 @@
+{
+  "Services": {
+    "sample-node": {
+      "Image": "rtpltest/sample-node@sha256:c9212516db53e66ea38c3b6e8051c25e935fb214c0c58658d45a3e90a7bc6224", 
+      "Networks": [
+        "default"
+      ], 
+      "Ports": [
+        {
+          "Port": 3000, 
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  }, 
+  "Version": "0.1"
+}
