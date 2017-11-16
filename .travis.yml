@@ -2,3 +2,16 @@ language: node_js
 node_js:
   - "iojs"
   - "6"
+services:
+  - docker
+before_install:
+  - docker build -t mhtsharma9482/sample-node:2.0.1
+  - docker images
+  - docker ps -a
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push USER/REPO;
+    fi
