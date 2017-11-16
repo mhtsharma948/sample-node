@@ -11,6 +11,7 @@ router.get('/user', (req, res, next) => {
     let data = {
         "firstName": "Mohit",
         "lastName": "Sharma",
+        "age": "22"
     }
     res.end(JSON.stringify(data));
 })
