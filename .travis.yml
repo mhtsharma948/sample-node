@@ -12,8 +12,10 @@ before_install:
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
-  - echo "deb https://packages.microsoft.com/repos/azure-cli/ wheezy main" | \
-     sudo tee /etc/apt/sources.list.d/azure-cli.list
+  - sudo apt-get install yum
+  - sudo sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+  - yum check-update
+  - sudo yum install azure-cli
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
