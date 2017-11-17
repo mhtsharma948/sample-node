@@ -16,11 +16,11 @@ before_install:
   - sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
   - sudo apt-get install apt-transport-https
   - sudo apt-get update && sudo apt-get install azure-cli
-  - az --version; 
+  - az --version;
+  -  az login -u "$AZURE_USERNAME" -P "$AZURE_PASSWORD"; 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     echo "$DOCKER_USERNAME"
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     docker push "$DOCKER_USERNAME"/sample-node;
-    az login -u "$AZURE_USERNAME" -P "$AZURE_PASSWORD";
     fi
