@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/user', (req, res, next) => {
     let data = {
-        "firstName": "Mohit",
+        "firstName": "rahul",
         "lastName": "Sharma",
         "age": "22"
     }
