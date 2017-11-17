@@ -9,9 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/user', (req, res, next) => {
     let data = {
-        "firstName": "Mohit",
-        "lastName": "Sharma",
-        "age": "22"
+        "firstName": "komal"
     }
     res.end(JSON.stringify(data));
 })
