@@ -24,5 +24,5 @@ after_success:
     sudo az acr login --name raykorAzureTest;
     az acr list --resource-group raykorAzureResourceGroup --query "[].{acrLoginServer:loginServer}" --output table;
     docker push "$AZURE_DOCKER"/sample-node;
-    az acr repository list --name "$AZURE_DOCKER" --output table;
+    az acr repository list --name raykorAzureTest --output table;
     fi
