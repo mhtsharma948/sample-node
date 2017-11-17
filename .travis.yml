@@ -19,10 +19,15 @@ before_install:
   - az --version;
   - az login -u "$AZURE_USERNAME" -p "$AZURE_PASSWORD"; 
   - kubectl version
+  - az group create --name raykorAzureResourceGroup --location eastus
+  - az acr create --resource-group raykorAzureResourceGroup --name raykorAzureTest --sku Basic
+  - sudo az acr login --name raykorAzureTest
+  - 
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     echo "$DOCKER_USERNAME"
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     docker push "$DOCKER_USERNAME"/sample-node;
+    docker images;
     fi
