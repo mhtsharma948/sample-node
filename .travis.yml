@@ -24,6 +24,7 @@ after_success:
     az group create --name raykorAzureResourceGroup --location eastus;
     az acr create --resource-group raykorAzureResourceGroup --name raykorAzureTest --sku Basic;
     sudo az acr login --name raykorAzureTest;
+    az acr list --resource-group raykorResourceGroup --query "[].{acrLoginServer:loginServer}" --output table;
     docker push "$AZURE_DOCKER"/sample-node;
     docker images;
     fi
