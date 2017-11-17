@@ -18,7 +18,6 @@ before_install:
   - sudo apt-get update && sudo apt-get install azure-cli
   - az --version;
   - az login -u "$AZURE_USERNAME" -p "$AZURE_PASSWORD"; 
-  - kubectl version
   - az group create --name raykorAzureResourceGroup --location eastus
   - az acr create --resource-group raykorAzureResourceGroup --name raykorAzureTest --sku Basic
   - sudo az acr login --name raykorAzureTest
