@@ -8,7 +8,6 @@ spec:
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 1
-  minReadySeconds: 5 
   template:
     metadata:
       labels:
@@ -16,9 +15,9 @@ spec:
     spec:
       containers:
       - name: sample-node
-        image: raykorazuretest.azurecr.io/sample-node:2.0.2
+        image: raykorazuretest.azurecr.io/sample-node:2.0.6
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         resources:
           requests:
             cpu: 250m

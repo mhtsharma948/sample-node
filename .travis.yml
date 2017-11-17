@@ -8,7 +8,7 @@ before_install:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker build -t "$AZURE_DOCKER"/sample-node:2.0.2 .;
+    docker build -t "$AZURE_DOCKER"/sample-node:2.0.6 .;
     docker images;
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     sudo apt-get install curl;
@@ -23,15 +23,17 @@ after_success:
     az login -u "$AZURE_USERNAME" -p "$AZURE_PASSWORD"; 
     sudo az acr login --name raykorAzureTest;
     az acr list --resource-group raykorAzureResourceGroup --query "[].{acrLoginServer:loginServer}" --output table;
-    docker push "$AZURE_DOCKER"/sample-node;
+    sudo docker push "$AZURE_DOCKER"/sample-node;
     az acr repository list --name raykorAzureTest --output table;
-    az acr repository show-tags --name rakorAzureTest --repository sample-node --output table;
+    az acr repository show-tags --name raykorAzureTest --repository sample-node --output table;
     az provider register -n Microsoft.ContainerService;
     az aks create --resource-group raykorAzureResourceGroup --name raykorAzureCluster --node-count 1 --generate-ssh-keys;
     az aks get-credentials --resource-group=raykorAzureResourceGroup --name=raykorAzureCluster;
     kubectl get nodes;
-    kubectl apply -f kubernetes.yml;
+    kubectl apply -f kubernetes.yml --record;
     kubectl get deployments;
     kubectl get services;
     kubectl get pods;
+    kubectl rollout history deploy/sample-node;
+    kubectl rollout status deploy/sample-node;
     fi
