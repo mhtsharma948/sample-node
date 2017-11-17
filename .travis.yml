@@ -25,4 +25,8 @@ after_success:
     az acr list --resource-group raykorAzureResourceGroup --query "[].{acrLoginServer:loginServer}" --output table;
     docker push "$AZURE_DOCKER"/sample-node;
     az acr repository list --name raykorAzureTest --output table;
+    az provider register -n Microsoft.ContainerService
+    az aks create --resource-group raykorAzureResourceGroup --name raykorAzureCluster --node-count 1 --generate-ssh-keys
+    az aks get-credentials --resource-group=raykorAzureResourceGroup --name=raykorAzureCluster
+    kubectl get nodes
     fi
