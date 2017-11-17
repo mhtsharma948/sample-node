@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sample-node
-        image: raykorazuretest.azurecr.io/sample-node:2.0.1
+        image: raykorazuretest.azurecr.io/sample-node:2.0.2
         ports:
         - containerPort: 80
         resources:
