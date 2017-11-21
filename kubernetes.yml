@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sample-node
 spec:
-  replicas: 4
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sample-node
-        image: raykorazuretest.azurecr.io/sample-node:2.0.9
+        image: raykorazuretest.azurecr.io/sample-node:2.0.10
         ports:
         - containerPort: 3000
         resources:
