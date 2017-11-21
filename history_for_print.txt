@@ -1188,3 +1188,4 @@
  1188* kubectl get rs
  1189* kubectl describe rs
  1190  history
+ sygnovate
