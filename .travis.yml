@@ -8,7 +8,7 @@ before_install:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker build -t "$AZURE_DOCKER"/sample-node:2.0.13 .;
+    docker build -t "$AZURE_DOCKER"/sample-node:2.0.14 .;
     docker images;
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     sudo apt-get install curl;
@@ -30,7 +30,7 @@ after_success:
     az aks create --resource-group raykorAzureResourceGroup --name raykorAzureCluster --node-count 1 --generate-ssh-keys;
     az aks get-credentials --resource-group=raykorAzureResourceGroup --name=raykorAzureCluster;
     kubectl get nodes;
-    kubectl apply -f kubernetes.yml --record;
+    kubectl set image deployment sample-node sample-node=raykorazuretest.azurecr.io/sample-node:2.0.14;
     kubectl get deployments;
     kubectl get services;
     kubectl get pods;
