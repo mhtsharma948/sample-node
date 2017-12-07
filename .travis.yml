@@ -8,7 +8,7 @@ before_install:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker build -t "$AZURE_DOCKER"/sample-node:2.0.10 .;
+    docker build -t "$AZURE_DOCKER"/sample-node:2.0.13 .;
     docker images;
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     sudo apt-get install curl;
